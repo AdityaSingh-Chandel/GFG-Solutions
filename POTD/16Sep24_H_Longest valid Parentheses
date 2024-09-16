@@ -1,0 +1,37 @@
+               # DP Approach
+class Solution:
+    def maxLength(self, s: str) -> int:
+        n = len(s)
+        dp = [0] * n
+        max_len = 0
+        
+        for i in range(1, n):
+            if s[i] == ')':
+                if i - dp[i - 1] - 1 >= 0 and s[i - dp[i - 1] - 1] == '(':
+                    dp[i] = dp[i - 1] + 2
+                    if i - dp[i] >= 0:
+                        dp[i] += dp[i - dp[i]]
+                max_len = max(max_len, dp[i])
+        
+        return max_len
+
+
+      # Below code is giving WRONG Output
+
+'''
+class Solution:
+    def maxLength(self, str):
+        # code here
+        if len(str)<=1:
+            return 0
+        maxPar=0
+        longst=[0]*len(str)
+        
+        for i in range(1,len(str)):
+            if str[i]==")" and i-longst[i-1]-1>=0 and str[i-longst[i-1]-1]=="(":
+                longst[i]=2
+                if i-longst[i-1]-2>=0:
+                    longst[i]+=longst[i-longst[i-1]-2]
+                maxPar=max(maxPar,longst[i])
+        return maxPar
+'''     
