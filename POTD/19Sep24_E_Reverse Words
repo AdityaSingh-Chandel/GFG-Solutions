@@ -1,0 +1,47 @@
+class Solution:
+    
+    def reverseWords(self, s):
+        s_list = list(s)
+        self.rever(s_list, 0, len(s_list) - 1)
+        
+        start = 0
+        for i in range(len(s_list)):
+            if s_list[i] == '.':
+                self.rever(s_list, start, i - 1)
+                start = i + 1
+        self.rever(s_list, start, len(s_list) - 1)
+        
+        return ''.join(s_list)
+                
+    def rever(self, s_list, start, end):
+        while start < end:
+            s_list[start], s_list[end] = s_list[end], s_list[start]
+            start += 1
+            end -= 1
+
+
+
+'''
+         #  Did not work ----( can't assign to str)
+class Solution:
+    
+    #Function to reverse words in a given string.
+    def reverseWords(self,str):
+        # code here 
+        self.rever(str,0,len(str)-1)
+        s=0
+        for i in range(len(str)):
+            if str[i]=='.':
+                self.rever(str,s,i-1)
+                s=i+1
+        self.rever(str,s,len(str)-1)
+        return str
+                
+                
+    def rever(self,str,s,e):
+        while s<=e:
+            str[s],str[e]=str[e],str[s]
+            s+=1
+            e-=1
+        return str
+''' 
