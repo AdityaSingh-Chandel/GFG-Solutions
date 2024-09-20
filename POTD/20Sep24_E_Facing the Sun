@@ -1,0 +1,11 @@
+class Solution:
+    # Returns count buildings that can see sunlight
+    def countBuildings(self, height):
+        # code here
+        mx=0
+        c=0
+        for h in height:
+            if h>mx:
+                c+=1
+                mx=h
+        return c
