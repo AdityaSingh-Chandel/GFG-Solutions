@@ -1,0 +1,53 @@
+'''
+	Your task is to check if given linkedlist
+	is a pallindrome or not.
+	
+	Function Arguments: head (reference to head of the linked list)
+	Return Type: boolean , no need to print just return True or False.
+
+	{
+		# Node Class
+		class Node:
+		    def __init__(self, data):   # data -> value stored in node
+		        self.data = data
+		        self.next = None
+	}
+
+	Contributed By: Nagendra Jha
+'''
+#Function to check whether the list is palindrome.
+
+class Solution:
+    def isPalindrome(self, head):
+        if not head or not head.next:
+            return True
+        
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        prev = None
+        current = slow
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        
+        first_half, second_half = head, prev
+        while second_half:
+            if first_half.data != second_half.data:
+                return False
+            first_half = first_half.next
+            second_half = second_half.next
+        
+        prev = None
+        current = slow
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        
+        return True
