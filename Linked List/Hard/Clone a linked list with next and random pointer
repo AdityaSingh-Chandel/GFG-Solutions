@@ -1,0 +1,51 @@
+                                       # 21-09-24
+
+'''
+class Node:
+    def __init__(self, data):   # data -> value stored in node
+        self.data = data
+        self.next = None
+        self.random=None
+        
+param: head:  head of linkedList to copy
+return: the head of the copied linked list the #output will be 1 if successfully copied
+'''
+class Solution:
+    #Function to clone a linked list with next and random pointer.
+    def copyList(self, head):
+        # code here
+        curr=head
+        if not curr: #or curr.next==None:
+            return curr
+        
+        while curr:
+            next=curr.next
+            curr.next=Node(curr.data)
+            curr.next.next=next
+            curr=next
+            
+        '''
+        while curr:
+            new=Node(curr.data)
+            new.next=curr.next
+            curr.next=new
+            curr=curr.next
+        '''
+        
+        curr=head
+        while curr:
+            if curr.random:                        # if random exist    (Mistake)
+                curr.next.random=curr.random.next
+            curr=curr.next.next
+        h2=head.next
+        clone=h2
+        curr=head
+        while curr:
+            curr.next=curr.next.next
+            if clone.next==None:                                    # Mistake
+                clone.next==None
+            else:
+                clone.next=clone.next.next
+            curr=curr.next
+            clone=clone.next
+        return h2
