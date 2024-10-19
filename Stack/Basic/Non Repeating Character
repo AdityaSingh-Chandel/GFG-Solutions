@@ -1,0 +1,32 @@
+                        # 19-10-24
+
+"""
+Given a string s consisting of lowercase Latin Letters. Return the first non-repeating character in s. 
+If there is no non-repeating character, return '$'.
+Note: When you return '$' driver code will output -1.
+
+Examples:
+
+Input: s = "hello"
+Output: h
+Explanation: In the given string, the first character which is non-repeating is h, as it appears first and there is no other 'h' in the string.
+Input: s = "zxvczbtxyzvy"
+Output: c
+Explanation: In the given string, 'c' is the character which is non-repeating.
+"""
+
+
+class Solution:
+    
+    #Function to find the first non-repeating character in a string.
+    def nonrepeatingCharacter(self,s):
+        #code here
+        d={}
+        
+        for x in s:
+            d[x]=d.get(x,0)+1
+        
+        for x in s:
+            if d[x]==1:
+                return x
+        return "$"
