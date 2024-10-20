@@ -1,0 +1,28 @@
+                                     # 20-10-24
+"""
+Given an integer N. The task is to return the position of first set bit found from the right side in the binary representation of the number.
+Note: If there is no set bit in the integer N, then return 0 from the function.  
+
+Example 1:
+
+Input: 
+N = 18
+Output: 
+2
+Explanation: 
+Binary representation of 18 is 010010,the first set bit from the right side is at position 2.
+"""
+
+class Solution:
+    
+    #Function to find position of first set bit in the given number.
+    def getFirstSetBit(self,n):
+        #Your code here
+        i=1
+        while n:
+            if n & 1==1:
+                #i+=1
+                return i
+            i+=1
+            n=n>>1
+        return 0
