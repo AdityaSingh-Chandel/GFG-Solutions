@@ -1,0 +1,27 @@
+                                             20-10-24
+"""
+Input: N = 14
+Output: 3
+Explanation: 
+Binary representation of 14 is 
+1110, in which 111 is the longest 
+consecutive set bits of length is 3.
+"""
+
+class Solution:
+    ##Complete this function
+    # Function to calculate the longest consecutive ones
+    def maxConsecutiveOnes(self, N):
+        ##Your code here
+        
+        #  Time Limit Exceeded
+        c,mx=0,0
+        while N:
+            if (N & 1):
+                c+=1
+                mx=max(c,mx)
+            else:
+                                   # updating mx here --> gives wrong ans
+                c=0
+            N=N>>1
+        return mx
