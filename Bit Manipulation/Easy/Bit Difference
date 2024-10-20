@@ -1,0 +1,26 @@
+                                                      # 20-10-24
+"""
+Input: A = 10, B = 20
+Output: 4
+Explanation:
+A  = 01010
+B  = 10100
+As we can see, the bits of A that need 
+to be flipped are 01010. If we flip 
+these bits, we get 10100, which is B.
+"""
+
+class Solution:
+    ##Complete this function
+    # Function to find number of bits needed to be flipped to convert A to B
+    def countBitsFlip(self,a,b):
+        ##Your code here
+        # Approach-- XOR- all diff bits ==1 , then count all 1's (ans)
+        x=a^b
+        
+          # Brian Kerningam's Algo -- to count Set Bits
+        c=0
+        while x:
+            x=x&(x-1)
+            c+=1
+        return c
