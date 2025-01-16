@@ -1,0 +1,22 @@
+              # 16-01-25
+#User function Template for python3
+
+class Solution:
+    
+    #Function to check whether there is a subarray present with 0-sum or not.
+    def subArrayExists(self,arr):
+        ##Your code here
+        #Return true or false
+        curr=0
+        d={}
+        for i in range(len(arr)):
+            if arr[i]==0:
+                return True
+            curr+=arr[i]
+            if curr==0:
+                return True
+            if curr in d:
+                return True
+            else:
+                d[curr]=i
+        return False
