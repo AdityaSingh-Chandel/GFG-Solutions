@@ -1,0 +1,16 @@
+                  # 16-01-25
+class Solution:
+    def longestSubarray(self, arr, k):  
+        # code here
+        d={}
+        curr=0
+        mx=0
+        for i in range(len(arr)):
+            curr+=arr[i]
+            if curr==k:
+                mx=i+1
+            if (curr-k) in d:
+                mx=max(mx,i-d[curr-k])
+            if curr not in d:
+                d[curr]=i
+        return mx
