@@ -1,0 +1,27 @@
+           # 21-01-25
+             # O(n)
+             # O(1)
+"""Node is defined as
+
+class Node:
+    def __init__(self, data):
+		self.data = data
+		self.next = None
+"""
+class Solution:
+    def reverseKGroup(self, head, k):
+        # Code here
+        curr=head 
+        coun=0
+        prev=None
+        while curr and coun < k:
+            next=curr.next
+            curr.next=prev
+            prev=curr
+            curr=next
+            coun+=1
+        
+        if curr != None:
+            head.next=self.reverseKGroup(curr,k)
+        
+        return prev
