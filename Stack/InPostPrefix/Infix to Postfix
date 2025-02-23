@@ -1,0 +1,25 @@
+    # 23-02-25
+class Solution:
+    
+    #Function to convert an infix expression to a postfix expression.
+    def InfixtoPostfix(self, s):
+        #code here
+        prec={"+":1,"-":1,"*":2,"/":2,"^":3}
+        st=[]
+        out=""
+        for c in s:
+            if c.isalnum():
+                out+=c
+            elif c=="(":
+                st.append(c)
+            elif c==")":
+                while (st and st[-1]!="("):
+                    out+=st.pop()
+                st.pop()       # pop "(" bracket
+            else:
+                while (st and st[-1]!="(" and prec[st[-1]] >= prec[c]):
+                    out+=st.pop()
+                st.append(c)
+        while st:
+            out+=st.pop()
+        return out
