@@ -1,0 +1,24 @@
+            # 23-02-25
+class Solution:
+    def postToInfix(self, postfix):
+        # Code here
+        s=set(["+","-","*","/","^"])
+        out=""
+        st=[]
+        for c in postfix:
+            if c.isalnum():
+                st.append(c)
+            elif c in s:
+                if len(st)<2:
+                    return -1
+                a=st.pop()
+                b=st.pop()
+                #out+="("+ b + c + a +")"
+                expr=f"({b}{c}{a})"
+                st.append(expr)
+                # elif st and out:
+                #     out+=c+st.pop()
+                #     out="("+out+")"
+                # else:
+                #     return -1
+        return st[-1] if len(st)==1 else -1
