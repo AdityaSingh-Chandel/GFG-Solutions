@@ -1,0 +1,28 @@
+                 # 08-03-25
+         # O(2^n)
+         
+class Solution:
+    def generateBinaryStrings(self, n):
+        # Code here
+        def genBin(n,arr):
+            if len(arr)==n:
+                res.append(''.join(arr))
+                return             # forgot to add this line
+            if len(arr)>n:
+                return
+            if not arr or arr[-1]=="0":
+                arr.append("0")
+                genBin(n,arr)
+                arr.pop()
+                arr.append("1")
+                genBin(n,arr)
+                arr.pop()           # forgot to add this line
+            else:
+                arr.append("0")
+                genBin(n,arr)
+                arr.pop()          # forgot to add this line
+        res=[]
+        genBin(n,[])
+        return res
+# Forgot lines : "==" ,e return na likhne pe got only one value "000" as output for n=3
+              #  pop wali 2 lines na likhne pe same values repeat hui aur kai values nhi aayi
