@@ -1,0 +1,24 @@
+             # 08-03-25
+        # O(N^2)
+        # O(N) <--recursive
+class Solution:
+    # your task is to complete this function
+    # function sort the stack such that top element is max
+    # funciton should return nothing
+    # s is a stack
+    def Sorted(self, s):
+        # Code here
+        def sortedInsert(st,elem):
+            if not st or st[-1]<=elem:
+                st.append(elem)
+            else:
+                temp=st.pop()
+                sortedInsert(st,elem)
+                st.append(temp)
+        def sortStack(st):
+            if len(st)>1:
+                temp=st.pop()
+                sortStack(st)
+                sortedInsert(st,temp)
+        sortStack(s)
+        return s
