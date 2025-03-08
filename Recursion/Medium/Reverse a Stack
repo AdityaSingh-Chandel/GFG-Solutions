@@ -1,0 +1,21 @@
+               # 08-03-25
+    # O(N^2)
+    # O(N) <-- Recursion
+    # O(1) <-- Auxillary space
+from typing import List
+
+class Solution:
+    def reverse(self,St): 
+        #code here
+        if len(St)>1:
+            temp = St.pop()
+            self.reverse(St)
+            # St.append(temp)
+            self.insert_bottom(St,temp)
+    def insert_bottom(self,st,elem):
+        if not st:
+            st.append(elem)
+        else:
+            temp=st.pop()
+            self.insert_bottom(st,elem)
+            st.append(temp)
