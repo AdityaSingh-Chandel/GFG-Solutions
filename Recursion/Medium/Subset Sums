@@ -1,0 +1,18 @@
+                  # 09-03-25
+      # O( 2^N)
+      # O(N) & O(1) 
+
+class Solution:
+	def subsetSums(self, arr):
+		# code here
+		def back(start,sum_):
+		    res.append(sum_)
+		    if start>=len(arr):
+		        return 
+		    for i in range(start,len(arr)):
+		        #path.append(arr[i])
+		        back(i+1,sum_+arr[i])
+		        #path.pop()
+		res=[]
+		back(0,0)
+		return res
