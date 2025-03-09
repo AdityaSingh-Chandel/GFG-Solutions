@@ -1,0 +1,118 @@
+                    # 09-03-25
+           # O( 4 ^ (N^2))
+           # O( N^2 )
+class Solution:
+    def findPath(self,mat):
+        n=len(mat)
+        if n==0 or mat[0][0]==0 or mat[n-1][n-1]==0:
+            return []
+        def isSafe(i,j):
+            return 0<=i<n and 0<=j<n and mat[i][j]==1
+        def solveRec(i,j,sol):
+            if i==n-1 and j==n-1:
+                res.append(''.join(sol))
+                return
+            # mark as visited
+            mat[i][j]=0
+            # Move in all four directions
+            if isSafe(i + 1, j):  # Down
+                sol.append("D")
+                solveRec(i + 1, j, sol)
+                sol.pop()
+            if isSafe(i, j - 1):  # Left
+                sol.append("L")
+                solveRec(i, j - 1, sol)
+                sol.pop()
+            if isSafe(i, j + 1):  # Right
+                sol.append("R")
+                solveRec(i, j + 1, sol)
+                sol.pop()
+            if isSafe(i - 1, j):  # Up
+                sol.append("U")
+                solveRec(i - 1, j, sol)
+                sol.pop()
+            mat[i][j]=1
+        res=[]
+        solveRec(0,0,[])
+        return sorted(res)
+
+
+         # correct code
+# class Solution:
+#     # Function to find all possible sols
+#     def findsol(self, mat):
+#         n = len(mat)
+#         if n == 0 or mat[0][0] == 0 or mat[n - 1][n - 1] == 0:
+#             return []  # No sol possible if start or end is blocked
+
+#         def isSafe(i, j):
+#             return 0 <= i < n and 0 <= j < n and mat[i][j] == 1 and not visited[i][j]
+
+#         def solveRec(i, j, sol):
+#             if i == n - 1 and j == n - 1:  # Reached destination
+#                 res.append(''.join(sol))
+#                 return
+            
+#             # Mark the cell as visited
+#             visited[i][j] = True
+
+#             # Move Down
+#             if isSafe(i + 1, j):
+#                 sol.append("D")
+#                 solveRec(i + 1, j, sol)
+#                 sol.pop()
+
+#             # Move Left
+#             if isSafe(i, j - 1):
+#                 sol.append("L")
+#                 solveRec(i, j - 1, sol)
+#                 sol.pop()
+
+#             # Move Right
+#             if isSafe(i, j + 1):
+#                 sol.append("R")
+#                 solveRec(i, j + 1, sol)
+#                 sol.pop()
+
+#             # Move Up
+#             if isSafe(i - 1, j):
+#                 sol.append("U")
+#                 solveRec(i - 1, j, sol)
+#                 sol.pop()
+
+#             # Unmark the cell (Backtracking)
+#             visited[i][j] = False
+
+#         res = []
+#         visited = [[False] * n for _ in range(n)]
+#         solveRec(0, 0, [])
+
+#         return sorted(res)  # Sorting sols lexicographically
+
+ 
+         # below could pass only 3 cases
+# #User function Template for python3
+# class Solution:
+#     # Function to find all possible sols
+#     def findsol(self, mat):
+#         # code here
+
+#         def isSafe(mat,i,j):
+#             return i<len(mat) and j<len(mat) and mat[i][j]==1
+        
+#         def solveRec(mat,i,j,sol):
+#             if i==len(mat)-1 and j==len(mat)-1 and mat[i][j]==1:
+#                 res.append(''.join(sol))
+#                 return
+#             if i>=len(mat) or j >=len(mat):
+#                 return 
+#             if isSafe(mat,i,j):
+#                 sol.append("R")
+#                 solveRec(mat,i,j+1,sol)
+#                 sol.pop()
+#                 sol.append("D")
+#                 solveRec(mat,i+1,j,sol)
+#                 sol.pop()
+#         res=[]
+#         solveRec(mat,0,0,[])
+#         return res
