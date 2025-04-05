@@ -1,0 +1,68 @@
+                    # 05-04-25
+               # O(N) & O(1)
+class Solution:
+    #Function to sort a linked list of 0s, 1s and 2s.
+    def segregate(self, head):
+        #code here
+        z_h,o_h,t_h = None,None,None
+        zero,one,two = z_h,o_h,t_h
+        curr = head
+        while curr:
+            if curr.data== 0:
+                if not z_h:
+                    z_h = curr
+                    zero = z_h
+                else:
+                    zero.next = curr
+                    zero = zero.next
+            
+            elif curr.data == 1:
+                if not o_h:
+                    o_h = curr
+                    one = o_h
+                else:
+                    one.next = curr
+                    one = one.next
+            else:
+                if not t_h:
+                    t_h = curr
+                    two = t_h
+                else:
+                    two.next = curr
+                    two = two.next
+            curr=curr.next
+
+        # if t_h:
+        #     two.next=None
+        #     one.next = t_h
+        # if o_h and not t_h:
+        #     one.next = None
+        # if z_h and t_h and not o_h:
+        #     zero.next = t_h
+        # if z_h and o_h:
+        #     zero.next = o_h
+        # return z_h
+
+
+        # Terminate the last sublist properly
+        if two:
+            two.next = None
+        
+        # Connect 1s to 2s if both exist
+        if one:
+            one.next = t_h
+        
+        # Connect 0s to 1s if 1s exist, else to 2s
+        if zero:
+            if o_h:
+                zero.next = o_h
+            else:
+                zero.next = t_h
+        
+        # Determine the new head to return
+        if z_h:
+            return z_h
+        elif o_h:
+            return o_h
+        else:
+            return t_h
